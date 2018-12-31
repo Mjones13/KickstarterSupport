@@ -6,12 +6,11 @@ const StyledPledgeListBox = styled.div`
 
   #allGone {
     font-size: 20px;
-    font-weight: bold; 
+    font-weight: bold;
     pointer-events: none;
     disabled: true;
   }
 `;
-
 
 const StyledPledgeBox = styled.div`
   z-index: 1;
@@ -24,13 +23,15 @@ const StyledPledgeBox = styled.div`
 
   margin-top: 3px;
   /* border: 1.5px solid rgba(211,211,211, 0.5); */
-  border: ${props => props.permanentBorder || !props.available
-    ? '1.5px solid rgba(0, 0, 0, 0.5)' : '1.5px solid rgba(211, 211, 211, 0.5)'};
+  border: ${props =>
+    props.permanentBorder || !props.available
+      ? '1.5px solid rgba(0, 0, 0, 0.5)'
+      : '1.5px solid rgba(211, 211, 211, 0.5)'};
   height: auto;
   width: 350px;
   -webkit-background-clip: padding-box; /* for Safari */
   background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
-  
+
   :hover {
     border: 1.5px solid rgba(0, 0, 0, 0.5);
   }
@@ -41,14 +42,14 @@ const StyledPledgeBox = styled.div`
 
   .subHeaderFont {
     font-size: 14px;
-    color: rgba(160,160,160, 1.5);
+    color: rgba(160, 160, 160, 1.5);
   }
 `;
 
 const StyledGreenPledgeBox = styled.div`
   visibility: 'hidden';
   position: relative;
-  height:100%;
+  height: 100%;
   width: 100%;
   font-size: 16px;
   /* top: 50%; */
@@ -62,10 +63,9 @@ const StyledGreenPledgeBox = styled.div`
     z-index: 5;
   }
 
-
   padding-top: 10px;
   padding-bottom: 5px;
-  left: -.25px;
+  left: -0.25px;
 
   .text {
     /* height: 100%; */
@@ -74,12 +74,13 @@ const StyledGreenPledgeBox = styled.div`
     color: 'white';
     position: relative;
     top: 50%;
-    transform: translateY(-50%); 
+    transform: translateY(-50%);
   }
 
   :hover {
-    visibility: ${props => props.available ? 'visible' : 'hidden'};
-    background-color: ${props => props.customerInputBoxes ? 'none' : 'rgba(0, 158, 116, .8)'};
+    visibility: ${props => (props.available ? 'visible' : 'hidden')};
+    background-color: ${props =>
+      props.customerInputBoxes ? 'none' : 'rgba(0, 158, 116, .8)'};
   }
   :hover .text {
     visibility: visible;
@@ -97,7 +98,7 @@ const StyledLeftSpan = styled.span`
   margin-right: 7.5%;
 `;
 
-const StyledBoxComponent = styled.div`
+const BoxComponent = styled.div`
   height: auto;
   flex-basis: 100%;
   font-size: 14px;
@@ -110,14 +111,14 @@ const StyledBoxComponent = styled.div`
   }
 `;
 
-const StyledBoxComponentText = styled(StyledBoxComponent)`
+const BoxComponentText = styled(BoxComponent)`
   line-height: 20px;
   margin-top: 10px;
   margin-left: 7.5%;
   margin-right: 7.5%;
 `;
 
-const StyledUnorderedList = styled(StyledBoxComponent)`
+const StyledUnorderedList = styled(BoxComponent)`
   line-height: auto;
   padding: 0px 0px 0px 0px;
   margin-left: 7.5%;
@@ -141,7 +142,7 @@ const StyledSelect = styled.select`
   flex-basis: 80%;
   vertical-align: middle;
   border-radius: 0px;
-  border: 1.5px solid rgba(211,211,211, 0.5);
+  border: 1.5px solid rgba(211, 211, 211, 0.5);
   margin-top: 5px;
 
   :focus {
@@ -153,8 +154,8 @@ export {
   StyledPledgeListBox,
   StyledPledgeBox,
   StyledLeftSpan,
-  StyledBoxComponent,
-  StyledBoxComponentText,
+  BoxComponent,
+  BoxComponentText,
   StyledUnorderedList,
   StyledListItem,
   StyledSelect,

@@ -9,15 +9,14 @@ import ContinueButton from './ContinueButton';
 import {
   StyledPledgeListBox,
   StyledPledgeBox,
-  StyledBoxComponent,
+  BoxComponent,
   StyledLeftSpan,
   StyledUnorderedList,
   StyledListItem,
-  StyledBoxComponentText,
+  BoxComponentText,
   StyledSelect,
   StyledGreenPledgeBox,
 } from './styles/styledPledgeBox';
-
 
 class Pledge extends React.Component {
   constructor(props) {
@@ -29,66 +28,93 @@ class Pledge extends React.Component {
   }
 
   addCustomerInputBoxes() {
-    this.setState((prevState) => {
-      return (
-        {
-          customerInputBoxes: true,
-          permanentBorder: true,
-        });
+    this.setState(prevState => {
+      return {
+        customerInputBoxes: true,
+        permanentBorder: true,
+      };
     });
   }
 
   render() {
     const { pledgeInfo, shipsToAnywhere, validLocations } = this.props;
     const {
-      minimumPledgeAmount, pledgeTitle, pledgeDescription, pledgeRewards,
-      estimatedShipping, available, pledgeBackers,
+      minimumPledgeAmount,
+      pledgeTitle,
+      pledgeDescription,
+      pledgeRewards,
+      estimatedShipping,
+      available,
+      pledgeBackers,
     } = pledgeInfo;
     const { customerInputBoxes, permanentBorder } = this.state;
 
     const addCustomerInputBoxes = this.addCustomerInputBoxes.bind(this);
 
-    const options = validLocations.map((location, index) => <option value={location.toUpperCase()} key={index}>{location.toUpperCase()}</option>);
+    const options = validLocations.map((location, index) => (
+      <option value={location.toUpperCase()} key={index}>
+        {location.toUpperCase()}
+      </option>
+    ));
     return (
       <StyledPledgeListBox>
-        {available
-          ? <div></div>
-          : <div id="allGone">All gone!</div>
-        }
-        <StyledPledgeBox onClick={() => { addCustomerInputBoxes(); }} permanentBorder={permanentBorder} available={available}>
-          <StyledGreenPledgeBox className="inFront" available={available} customerInputBoxes={customerInputBoxes}>
+        {available ? <div /> : <div id="allGone">All gone!</div>}
+        <StyledPledgeBox
+          onClick={() => {
+            addCustomerInputBoxes();
+          }}
+          permanentBorder={permanentBorder}
+          available={available}
+        >
+          <StyledGreenPledgeBox
+            className="inFront"
+            available={available}
+            customerInputBoxes={customerInputBoxes}
+          >
             <div className="text">Text is here</div>
             <div style={{ visibility: 'visible' }}>
-              <StyledBoxComponent className="headerFont">
-                <StyledLeftSpan>Pledge US${minimumPledgeAmount} or more</StyledLeftSpan>
-              </StyledBoxComponent>
-              <StyledBoxComponent className="headerFont pledgeTitle">
+              <BoxComponent className="headerFont">
+                <StyledLeftSpan>
+                  Pledge US${minimumPledgeAmount} or more
+                </StyledLeftSpan>
+              </BoxComponent>
+              <BoxComponent className="headerFont pledgeTitle">
                 <StyledLeftSpan>{pledgeTitle}</StyledLeftSpan>
-              </StyledBoxComponent>
-              <StyledBoxComponentText className="subHeaderFont">{pledgeDescription}</StyledBoxComponentText>
+              </BoxComponent>
+              <BoxComponentText className="subHeaderFont">
+                {pledgeDescription}
+              </BoxComponentText>
               <StyledUnorderedList className="subHeaderFont">
                 Includes:
-              {pledgeRewards.map((reward, index) => <StyledListItem key={index} className="listItem">{reward}</StyledListItem>)}
+                {pledgeRewards.map((reward, index) => (
+                  <StyledListItem key={index} className="listItem">
+                    {reward}
+                  </StyledListItem>
+                ))}
               </StyledUnorderedList>
-              <ShippingInfo estimatedShipping={estimatedShipping} shipsToAnywhere={shipsToAnywhere} />
-              <Availability availability={available} numBackers={pledgeBackers} />
-              {
-                customerInputBoxes && available
-                  ? (
-                    <StyledBoxComponent className="inputBoxesContainer">
-                      <StyledBoxComponent className="subHeaderFont" >
-                        <StyledLeftSpan>Shipping destination</StyledLeftSpan>
-                      </StyledBoxComponent>
-                      <StyledSelect>{options}</StyledSelect>
-                      <StyledBoxComponent className="subHeaderFont">
-                        <StyledLeftSpan>Pledge amount</StyledLeftSpan>
-                      </StyledBoxComponent>
-                      <InputBox />
-                      <ContinueButton />
-                    </StyledBoxComponent>
-                  )
-                  : <div />
-              }
+              <ShippingInfo
+                estimatedShipping={estimatedShipping}
+                shipsToAnywhere={shipsToAnywhere}
+              />
+              <Availability
+                availability={available}
+                numBackers={pledgeBackers}
+              />
+              {customerInputBoxes && available ? (
+                <BoxComponent className="inputBoxesContainer">
+                  <BoxComponent className="subHeaderFont">
+                    <StyledLeftSpan>Shipping destination</StyledLeftSpan>
+                  </BoxComponent>
+                  <StyledSelect>{options}</StyledSelect>
+                  <BoxComponent className="subHeaderFont">
+                    <StyledLeftSpan>Pledge amount</StyledLeftSpan>
+                  </BoxComponent>
+                  <InputBox />
+                  <ContinueButton />
+                </BoxComponent>
+              ) : (
+                <div />
+              )}
             </div>
           </StyledGreenPledgeBox>
         </StyledPledgeBox>
